@@ -10,14 +10,16 @@ import (
 )
 
 type MovieDetails struct {
-	Id          int    `json:"id"`
-	Title       string `json:"title"`
-	Overview    string `json:"overview"`
-	ReleaseDate string `json:"release_date"`
-	Budget      int    `json:"budget"`
-	Revenue     int    `json:"revenue"`
-	PosterPath  string `json:"poster_path"`
-	Genres      []struct {
+	Id               int    `json:"id"`
+	Title            string `json:"title"`
+	OriginalTitle    string `json:"original_title"`
+	OriginalLanguage string `json:"original_language"`
+	Overview         string `json:"overview"`
+	ReleaseDate      string `json:"release_date"`
+	Budget           int    `json:"budget"`
+	Revenue          int    `json:"revenue"`
+	PosterPath       string `json:"poster_path"`
+	Genres           []struct {
 		Name string `json:"name"`
 	} `json:"genres"`
 }

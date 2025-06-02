@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
@@ -21,7 +22,15 @@ func main() {
 	tmdb := NewTMDbClient(tmdbAccessToken)
 	router := gin.Default()
 
-	router.GET("/:id", func(c *gin.Context) {
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://localhost:5173"}
+	config.AllowMethods = []string{"GET"}
+	config.AllowHeaders = []string{"Origin", "Content-Type", "Accept", "Authorization"}
+	config.AllowCredentials = true
+
+	router.Use(cors.New(config))
+
+	router.GET("/details/:id", func(c *gin.Context) {
 		id := c.Param("id")
 
 		details, err := tmdb.getMovieDetails(id)
